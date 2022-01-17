@@ -6,16 +6,16 @@
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <% if @pin.image.attached? %>
-    <%= image_tag @pin.image, width: "200px" %>
-  <% end %>
-</p>
-
-<p>
   <strong>Caption:</strong>
   <%= @pin.caption %>
 </p>
 
-<%= link_to 'Edit', edit_pin_path(@pin) %> |
-<%= link_to 'Back', pins_path %>
+<p>
+  <strong>Image:</strong>
+  <% if @pin.image.attached? %>
+    <%= image_tag @pin.image, width: "600px" %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_pin_path(@pin), class:"btn btn-warning" %>
+<%= link_to 'Back', pins_path, class:"btn btn-primary" %>

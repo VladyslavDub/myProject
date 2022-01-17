@@ -2,6 +2,8 @@
 
 <h1>Pins</h1>
 
+<%= link_to 'New Pin', new_pin_path, class:"btn btn-primary" %>
+
 <table>
   <thead>
     <tr>
@@ -16,9 +18,9 @@
       <tr>
         <td><%= pin.title %></td>
         <td><%= pin.caption %></td>
-        <td><%= link_to 'Show', pin %></td>
-        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', pin, class:"btn btn-success" %></td>
+        <td><%= link_to 'Edit', edit_pin_path(pin), class:"btn btn-warning"%></td>
+        <td><%= link_to 'Destroy', pin, class:"btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' }%></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Pin', new_pin_path %>
+
