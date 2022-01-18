@@ -3,4 +3,6 @@ class Pin < ApplicationRecord
 
     validates :title, presence: true
     validates :caption, presence: true, length: { minimum: 5 }
+
+    
 end

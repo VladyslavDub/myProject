@@ -10,10 +10,16 @@
               <%= link_to 'Create', new_pin_path, class:"btn btn-primary" %>
             </li>
           </ul>
+           |
           <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
           </form>
+           |
+          <div class="">
+            <%=link_to("Login", new_user_session_path, class:"btn btn-success") unless user_signed_in?%>
+            <%=link_to("Exit", destroy_user_session_path,method: :delete, class:"btn btn-danger") if user_signed_in?%>
+          </div>
         </div>
       </div>
     </nav>

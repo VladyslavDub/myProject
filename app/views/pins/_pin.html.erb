@@ -1,9 +1,10 @@
 <div class="col-6">
   <div class="">
-    <%=link_to image_tag(pin.image.variant(resize_to_limit: [200, 200])),pin_path(pin) if pin.image.attached? %>
+    <%=link_to image_tag(pin.image.variant(resize_to_limit: [300, 300])),pin_path(pin) if pin.image.attached? %>
   </div>
   <div class="">
     <%= link_to pin.title, pin_path(pin)%>
   </div>
   <span class="badge bg-secondary" title="Created"><%=pin.created_at%></span>
+  <span class="badge bg-primary" title="Author"><%=pin.user_id%></span>
 </div>
