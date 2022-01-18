@@ -1,4 +1,7 @@
 class PinsController < ApplicationController
+
+  http_basic_authenticate_with name: "123", password: "321", except: [:index, :show]
+
   before_action :set_pin, only: %i[ show edit update destroy ]
   # GET /pins or /pins.json
   def index

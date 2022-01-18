@@ -17,5 +17,7 @@
   <% end %>
 </p>
 
-<%= link_to 'Edit', edit_pin_path(@pin), class:"btn btn-warning" %>
 <%= link_to 'Back', pins_path, class:"btn btn-primary" %>
+<%= link_to 'Edit', edit_pin_path(@pin), class:"btn btn-warning" %>
+<%= link_to 'Destroy', @pin, class:"btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' }%>
+
