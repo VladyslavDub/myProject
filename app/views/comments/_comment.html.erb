@@ -5,5 +5,7 @@
   <div class="">
     Author: <%=comment.user.username%>
     commented_at: <%=comment.created_at%>
+    <div>
+<%= link_to 'Delete', [comment.pin, comment], class:"btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' }%>
   </div>
 </div>
