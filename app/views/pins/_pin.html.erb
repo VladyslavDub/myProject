@@ -6,5 +6,5 @@
     <%= link_to pin.title, pin_path(pin)%>
   </div>
   <span class="badge bg-secondary" title="Created"><%=pin.created_at%></span>
-  <span class="badge bg-primary" title="Author"><%=pin.user_id%></span>
+  <span class="badge bg-primary" title="Author"><%=pin.user.username%></span>
 </div>

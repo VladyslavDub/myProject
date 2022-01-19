@@ -1,8 +1,6 @@
 class PinsController < ApplicationController
-
-  http_basic_authenticate_with name: "123", password: "321", except: [:index, :show]
   before_action :authenticate_user!, only: %i[new create update edit]
-  before_action :set_pin, only: %i[ show edit update destroy ]
+  before_action :pin, only: %i[ show edit update destroy ]
   # GET /pins or /pins.json
   def index
     @pins = Pin.all
@@ -10,6 +8,7 @@ class PinsController < ApplicationController
 
   # GET /pins/1 or /pins/1.json
   def show
+    @comments = pin.comments
   end
 
   # GET /pins/new
@@ -23,10 +22,7 @@ class PinsController < ApplicationController
 
   # POST /pins or /pins.json
   def create
-
-    @pin = current_user.pin.build(pin_params)
-
-    @pin = Pin.new(pin_params)
+    @pin = current_user.pins.build(pin_params)
 
     respond_to do |format|
       if @pin.save
@@ -64,7 +60,7 @@ class PinsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_pin
+    def pin
       @pin = Pin.find(params[:id])
     end
 

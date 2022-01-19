@@ -21,3 +21,11 @@
 <%= link_to 'Edit', edit_pin_path(@pin), class:"btn btn-warning" %>
 <%= link_to 'Destroy', @pin, class:"btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' }%>
 
+<h2>Comments:</h2>
+<div class="">
+  <%=render @comments%>
+</div>
+<div class="">
+  <%= render "comments/form"%>
+</div>
+

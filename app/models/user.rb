@@ -4,5 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :pin
+  has_many :pins
+  has_many :comments
+
+  def username
+    name || email
+  end
 end
