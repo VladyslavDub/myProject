@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :pins
   has_many :comments
 
+  validates :name, length: {minimum: 3}
+
   def username
     name || email
   end

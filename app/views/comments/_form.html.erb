@@ -1,4 +1,4 @@
-<%= form_with model: Comment.new ,url: pin_comments_path(@pin) do |f|%>
+<%= form_with model: Comment.new ,url: commentable_comment_path(commentable.class.name,commentable.id) do |f|%>
   <%=f.label :text%>
   <%=f.text_area :text %>
 

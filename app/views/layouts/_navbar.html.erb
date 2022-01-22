@@ -17,8 +17,12 @@
           </form>
            |
           <div class="">
-            <%=link_to("Login", new_user_session_path, class:"btn btn-success") unless user_signed_in?%>
-            <%=link_to("Exit", destroy_user_session_path,method: :delete, class:"btn btn-danger") if user_signed_in?%>
+                    <% if user_signed_in?%>
+          <%=link_to "Profile", profile_path%>
+          <%=link_to("Exit", destroy_user_session_path,method: :delete, class:"btn btn-danger") %>
+        <%else%>
+          <%=link_to("Login", new_user_session_path, class:"btn") %>
+        <%end%>
           </div>
         </div>
       </div>

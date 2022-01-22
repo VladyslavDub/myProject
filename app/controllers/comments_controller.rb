@@ -1,28 +1,34 @@
 class CommentsController < ApplicationController
-    before_action :authenticate_user!, only: %i[create]
+    before_action :authenticate_user!, only: %i[create destroy]
 
   def create
     @comment = current_user.comments.build(comment_paramas)
-    @comment.pin = pin
+    @comment.commentable = commentable
     @comment.save
 
-    redirect_to pin
+    return redirect_to(commentable) if commentable.class.name != "Comment"
+
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
-    @pin = Pin.find(params[:pin_id])
-    @comment = @pin.comments.find(params[:id])
-    @comment.destroy
-    redirect_to pin_path(@pin)
+    if @comment = current_user.comments.find_by(id: params[:id])
+      @comment.delete
+      return redirect_back(fallback_location: root_path)
+    end
   end
 
   private
 
-  def pin
-      Pin.find(params[:pin_id])
+  def commentable
+    commentable_model.find(params[:commentable_id])
+  end
+
+  def commentable_model
+    params[:commentable_type].constantize
   end
 
   def comment_paramas
-    params.require(:comment).permit(:text,:user_id,:pin_id)
+    params.require(:comment).permit(:text,:user_id)
   end
 end
