@@ -24,6 +24,7 @@ gem 'devise'
 gem 'rmagick'
 gem 'bootstrap', '~> 5.1.3'
 gem 'pg', '~> 1.1'
+gem "aws-sdk-s3", require: false
 
 
 
