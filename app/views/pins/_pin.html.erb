@@ -7,4 +7,11 @@
   </div>
   <span class="badge bg-secondary" title="Created"><%=pin.created_at%></span>
   <span class="badge bg-primary" title="Author"><%=pin.user.username%></span>
+  <div class="">
+    <%pin.categories.each do |category|%>
+      <span class="badge">
+        <%=link_to category.name, category_path(category)%>
+      </span>
+    <%end%>
+  </div>
 </div>

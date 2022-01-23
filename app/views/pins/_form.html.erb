@@ -16,6 +16,15 @@
     <%= form.text_field :title, class:"form-control" %>
   </div>
 
+  <div>
+    <%=form.label :tags, class:"form-label"%>
+    <br>
+    <% Category.all.each do |category|%>
+    <%=form.label category.name, class:"form-label"%>
+    <%= form.check_box :category_ids,{multiple: true}, category.id, nil %>
+    <%end%>
+  </div>
+  
   <div class="field">
     <%= form.label :caption, class:"form-label"  %>
     <%= form.text_area :caption, class:"form-control"  %>

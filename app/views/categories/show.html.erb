@@ -1,0 +1,17 @@
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <%=link_to "Home", root_path%>
+    </li>
+    <li class="breadcrumb-item">
+      <%= link_to "Categories", categories_path%>
+    </li>
+    <li class="breadcrumb-item"></li>
+  </ol>
+</nav>
+<h1>
+  <%=@category.name%>
+</h1>
+<div class="row">
+  <%=render @pins%>
+</div>
