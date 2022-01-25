@@ -7,32 +7,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-<<<<<<< HEAD
-              <%= link_to 'Create', new_pin_path, class:"btn btn-primary" %>
-=======
               <%= link_to 'Create', new_pin_path, class:"btn btn-outline-primary" %>
               <%= link_to "Categories", categories_path, class:"btn btn-outline-info"%>
->>>>>>> 7cc1772... Add category
             </li>
           </ul>
-           |
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-           |
+          |
+          <%=form_with url: pins_path, method: :get, class:"d-flex" do |f|%>
+            <%=f.text_field :q, value: @q, placeholder: "Search",class:"form-control me-2"%>
+            <%=f.submit "Search" ,class: "btn btn-outline-success"%>
+          <%end%>
+          |
           <div class="">
-                    <% if user_signed_in?%>
-<<<<<<< HEAD
-          <%=link_to "Profile", profile_path%>
-          <%=link_to("Exit", destroy_user_session_path,method: :delete, class:"btn btn-danger") %>
-=======
-          <%=link_to "Profile", profile_path, class:"btn btn-outline-secondary"%>
-          <%=link_to("Exit", destroy_user_session_path,method: :delete, class:"btn btn-outline-danger")%>
->>>>>>> 7cc1772... Add category
-        <%else%>
-          <%=link_to("Login", new_user_session_path, class:"btn btn-outline-primary") %>
-        <%end%>
+            <% if user_signed_in?%>
+              <%=link_to "Profile", profile_path, class:"btn btn-outline-secondary"%>
+              <%=link_to("Exit", destroy_user_session_path,method: :delete, class:"btn btn-outline-danger")%>
+            <%else%>
+              <%=link_to("Login", new_user_session_path, class:"btn btn-outline-primary") %>
+            <%end%>
           </div>
         </div>
       </div>

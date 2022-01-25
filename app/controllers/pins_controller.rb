@@ -4,6 +4,12 @@ class PinsController < ApplicationController
   # GET /pins or /pins.json
   def index
     @pins = Pin.all
+    @q = params[:q]
+    if @q
+    titles = Arel::Table.new(:pins)[:title]
+    @pins = @pins.where(titles.matches("%#{@q}%"))
+
+    end
   end
 
   # GET /pins/1 or /pins/1.json
@@ -66,6 +72,6 @@ class PinsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pin_params
-      params.require(:pin).permit(:title, :caption, :image, :user_id)
+      params.require(:pin).permit(:title, :caption, :image, :user_id, :category_names)
     end
 end

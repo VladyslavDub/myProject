@@ -24,10 +24,7 @@ gem 'devise'
 gem 'rmagick'
 gem 'bootstrap', '~> 5.1.3'
 gem 'pg', '~> 1.1'
-<<<<<<< HEAD
-=======
-#gem "aws-sdk-s3", require: false
->>>>>>> 7cc1772... Add category
+
 
 
 
