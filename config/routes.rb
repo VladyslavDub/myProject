@@ -5,10 +5,11 @@ Rails.application.routes.draw do
   resources :pins
 
   resources :comments, only: %i[destroy]
+  post ":commentable_type/:commentable_id/comment", to: "comments#create", as: :commentable_comment
+
+  post ":object_type/:object_id/like", to: "likes#create", as: :like_object
 
   resources :categories,only: %i[index show destroy]
-
-  post ":commentable_type/:commentable_id/comment", to: "comments#create", as: :commentable_comment
 
   resource :profile, only: %i[show]
   

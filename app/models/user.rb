@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :pins
   has_many :comments
+  has_many :likes, foreign_key: :voter_id
 
   validates :name, length: {minimum: 3}
 

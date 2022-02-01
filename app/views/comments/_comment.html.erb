@@ -3,14 +3,16 @@
     <%=comment.text%>
   </div>
   <div class="">
-    Author: <%=comment.user.username%> <%=link_to "X",comment_path(comment), method: :delete, data: {confirm: "Yoy sure?"} if user_signed_in? && current_user == comment.user%>
+    Author: <%=comment.user.username%> <%#=link_to "X",comment_path(comment), method: :delete, data: {confirm: "Yoy sure?"} if user_signed_in? && current_user == comment.user%>
     commented_at: <%=comment.created_at%>
     <div>
-  </div>
-    <div class="mx-3">
-    <div class="">
-      <%=render comment.comments%>
     </div>
-    <%= render "comments/form", commentable:comment%>
+    <div class="mx-3">
+      <div class="">
+        <%= turbo_frame_tag "comment_#{comment.id}_comments" do%>
+          <%=render comment.comments%>
+        <%end%>
+      </div>
+      <%= render "comments/form", commentable:comment%>
+    </div>
   </div>
-</div>

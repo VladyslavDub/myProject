@@ -6,6 +6,7 @@
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
+import * as Turbo from "@hotwired/turbo-rails"
 import "channels"
 
 import "bootstrap"
@@ -15,3 +16,4 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "../stylesheets/application"
+import "./like"

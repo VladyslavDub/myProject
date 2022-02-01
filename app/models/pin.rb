@@ -1,10 +1,13 @@
 class Pin < ApplicationRecord
     has_one_attached :image
 
+    is_impressionable
+
     belongs_to :user
     has_many :comments, as: :commentable
     has_many :tags, dependent: :delete_all
     has_many :categories, through: :tags
+    has_many :likes, as: :object
 
     validates :title, presence: true, length: { minimum: 3 }
     validates :caption, presence: true, length: { minimum: 5 }

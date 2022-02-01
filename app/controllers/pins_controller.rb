@@ -1,9 +1,10 @@
 class PinsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create update edit]
   before_action :pin, only: %i[ show edit update destroy ]
+  impressionist :actions=>[:show,:index]
   # GET /pins or /pins.json
   def index
-    @pins = Pin.all
+    @pins = Pin.all.with_attached_image.includes([:user,:categories])
     @q = params[:q]
     if @q
     titles = Arel::Table.new(:pins)[:title]
@@ -14,7 +15,8 @@ class PinsController < ApplicationController
 
   # GET /pins/1 or /pins/1.json
   def show
-    @comments = pin.comments
+    @comments = pin.comments.includes(:user,:comments)
+    impressionist(@pin)
   end
 
   # GET /pins/new

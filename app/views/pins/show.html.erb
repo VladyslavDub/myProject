@@ -1,37 +1,44 @@
+<%= turbo_stream_from "pin" %>
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @pin.title %>
 </p>
-
 <%@pin.categories.each do |category|%>
   <span class="badge">
     <%=link_to category.name, category_path(category)%>
   </span>
 <%end%>
-
 <p>
   <strong>Caption:</strong>
   <%= @pin.caption %>
 </p>
-
 <p>
   <strong>Image:</strong>
   <% if @pin.image.attached? %>
     <%= image_tag @pin.image, width: "600px" %>
   <% end %>
 </p>
-
 <%= link_to 'Back', pins_path, class:"btn btn-primary" %>
-<%= link_to 'Edit', edit_pin_path(@pin), class:"btn btn-warning" %>
-<%= link_to 'Delete', @pin, class:"btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' }%>
-
-<h2>Comments:</h2>
-<div class="">
-  <%=render @comments%>
+<span class="likes">
+  <%=@pin.likes.count%>
+</span>
+<%= link_to "Like","", class:"like"%>
 </div>
 <div class="">
-  <%= render "comments/form", commentable:@pin%>
-</div>
-
+  <%= link_to("Edit", edit_pin_path(@pin), class:"btn btn-warning") if user_signed_in? && current_user.id == @pin.user_id%>
+  <%= link_to 'Delete', @pin, class:"btn btn-danger",method: :delete, data: { confirm: 'Are you sure?' }%>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+  </svg>
+  <%= @pin.impressionist_count %>
+  <h2>Comments:</h2>
+  <div class="">
+    <%= turbo_frame_tag "pin_#{@pin.id}_comments" do %>
+      <%=render @comments%>
+    <%end%>
+  </div>
+  <div class="">
+    <%= render "comments/form", commentable:@pin%>
+  </div>
